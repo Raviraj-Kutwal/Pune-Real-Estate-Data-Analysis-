@@ -1,78 +1,82 @@
+Pune RERA Real Estate Analysis
 
+📖 About The Project
 
-# 🏙️ Pune RERA Project Analysis
+This project performs an in-depth analysis of the Pune real estate market using a dataset of projects registered under the Real Estate Regulatory Authority (RERA). The analysis covers data cleaning, preprocessing, and visualization to uncover key insights into project statuses, leading promoters, property types, and sales distribution across different divisions of Pune.
 
-This repository presents a **data-driven analysis of Pune RERA (Real Estate Regulatory Authority) projects**, exploring trends across property types, divisions, promoters, and booking data.  
-It combines official RERA data with India Post PIN code mappings to provide spatial and categorical insights into Pune’s real estate growth.
+🛠️ Tools Used
 
----
+The analysis was conducted using Python with the following core libraries:
 
-## 📁 Repository Structure
-Pune-RERA-Analysis/
-│
-├── rera_analysis.ipynb # Main Google Colab notebook
-├── pune_rera.csv # Raw RERA dataset
-├── all_pincodes.csv # India-wide PIN code reference
-├── pune_rera_cleaned.csv # Cleaned & merged dataset
-├── pune_pincode_info.csv # Extracted PIN–Division–Region mapping
-└── README.md # Project documentation
+Pandas: For data manipulation and analysis.
 
-## 🎯 Project Objectives
+NumPy: For numerical operations and handling missing values.
 
-- 🧹 Clean and preprocess Pune RERA project data  
-- 📍 Merge with postal data (PIN, Division, Region, Office)  
-- 🏗️ Categorize projects by property type and promoter  
-- 📊 Analyze booking patterns (apartments and plots) by division  
-- 🏙️ Identify top-performing localities and divisions  
-- 📈 Visualize insights through bar charts, pie charts, and heatmaps  
+Matplotlib & Seaborn: For data visualization and generating insightful plots.
 
----
+🔄 Data Preprocessing
 
-## 💡 Key Insights
+To ensure the accuracy and reliability of the insights, the raw dataset underwent several preprocessing steps:
 
-### 🏢 1. Top Divisions by Number of Projects
-- **Pune City West Division** has the highest number of registered projects.  
-- **Pune City East** and **Pune Rural Divisions** follow with significant development activity.  
+Loading Data: The primary dataset pune-rera-dataset.csv and a supplementary pincode.csv were loaded into Pandas DataFrames.
 
-### 📍 2. Top Localities (by Project Concentration)
-- **Wakad, Hinjawadi, Kharadi, Baner** emerge as the top localities in terms of active projects.  
-- Indicates strong urban expansion and IT-driven residential growth.  
+Handling Duplicates: The dataset was checked for duplicate project entries based on the rera_id, and it was confirmed that there were no initial duplicates.
 
-### 🧱 3. Total and Average Project Area by Property Type
-| Property Type | Total Area (sq.m.) | Observation |
-|----------------|--------------------|--------------|
-| Residential | Largest total share (~60%+) | Dominant in Pune RERA |
-| Commercial | Smaller footprint, high density | Focused around business zones |
-| Mixed Use | Increasing rapidly | Common in new townships |
-| Industrial | Moderate share | Around outskirts and MIDC regions |
+Column Removal: Irrelevant columns that were not required for the analysis, such as location_lat_long, number_of_basements, and number_of_podiums, were dropped to simplify the dataset.
 
-### 🏠 4. Booked Apartments and Plots (by Division)
-- **Pune City West →** Highest number of booked apartments  
-- **Pune Rural →** Highest number of booked plots  
-- Booking data correlates strongly with division-level development  
+Missing Value Imputation:
 
----
+Empty strings and various text representations of null values (e.g., 'none', 'null', 'na') were standardized to np.nan.
 
-## 🧮 Tools & Libraries Used
+A significant number of missing values were identified in columns like revised_proposed_date_of_completion, extended_date_of_completion, cases_count, and complaints_count.
 
-| Purpose | Library |
-|----------|----------|
-| Data Cleaning & Analysis | Pandas, NumPy |
-| Visualization | Matplotlib, Seaborn, Squarify |
-| Dimensional Reduction | scikit-learn (PCA) |
-| Notebook Environment | Google Colab |
-| Storage & Versioning | Google Drive, GitHub |
+Data Enrichment: The RERA dataset was merged with the pincode.csv dataset on the pincode to add geographical information, including DivisionName, OfficeName, and RegionName.
 
----
+Duplicate Resolution after Merge: The merge operation introduced duplicates for projects located in areas with multiple office names for a single pincode. These duplicates were resolved by keeping only the first entry for each unique rera_id.
 
-## 📊 Visualizations
+📊 Key Insights Generated
 
-- 📈 **Bar Chart** – Total project area by property type  
-- 🥧 **Pie Chart** – Share of total area across categories  
-- 🗺️ **Treemap** – Top promoters by project count  
-- 🔥 **Heatmap** – Correlation of numerical project data  
-- 🧩 **Stacked Bar** – Apartments vs Plots booked across divisions  
+Promoter Market Share
 
+The analysis identified the top real estate promoters in Pune based on the number of registered projects.
+
+Top 15 Promoters by Number of Projects:
+
+1.  **Joyville Shapoorji Housing Private Limited** (35 projects)
+2.  **Macrotech Developers Limited** (34 projects)
+3.  **Lavasa Corporation Ltd** (31 projects)
+4.  **PANDIT JAVDEKAR ASSOCIATES** (28 projects)
+5.  **PARANJAPE SCHEMES (CONSTRUCTION) LTD** (24 projects)
+6.  **VTP REALTY LLP** (24 projects)
+7.  **KOLTE PATIL DEVELOPERS LTD** (23 projects)
+8.  **MAHALAXMI BUILDCON** (23 projects)
+9.  **GODREJ PROPERTIES LIMITED** (22 projects)
+10. **Goel Ganga Developments** (20 projects)
+11. **VILAS JAVDEKAR DEVELOPERS PRIVATE LIMITED** (19 projects)
+12. **PRIDE AND EXPERT PROPERTIES LLP** (18 projects)
+13. **Shapoorji Pallonji And Company Private Limited** (18 projects)
+14. **AMANORA PARK TOWN** (18 projects)
+15. **Gagan Developers** (17 projects)
+
+Project Status Distribution
+
+A significant majority of the projects in the dataset are ongoing, indicating a continuously active real estate market in Pune.
+
+Project Area by Property Type
+
+Residential projects dominate the Pune real estate market in terms of total area, followed by 'Others' and 'Plots'.
+
+Sales Analysis by Division
+
+The analysis of booked apartments and plots reveals the sales activity across different administrative divisions of Pune. The Pune City East Division shows the highest number of booked apartments.
+
+Booked Apartments by Division:
+
+Booked Plots by Division:
+
+The total number of booked properties (apartments + plots) across all projects with sales is 525,022.
+
+This analysis provides a comprehensive overview of the Pune RERA registered properties, offering valuable insights for potential homebuyers, investors, and real estate developers.
 ---
 
 ## 🗂️ Data Sources
