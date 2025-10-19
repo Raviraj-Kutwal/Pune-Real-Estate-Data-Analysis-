@@ -20,9 +20,9 @@ To ensure the accuracy and reliability of the insights, the raw dataset underwen
 
 Loading Data: The primary dataset pune-rera-dataset.csv and a supplementary pincode.csv were loaded into Pandas DataFrames.
 
-Handling Duplicates: The dataset was checked for duplicate project entries based on the rera_id, and it was confirmed that there were no initial duplicates.
+Handling Duplicates: The dataset was checked for duplicate project entries based on the rera id , several thousands of duplicates were found and handled.
 
-Column Removal: Irrelevant columns that were not required for the analysis, such as location_lat_long, number_of_basements, and number_of_podiums, were dropped to simplify the dataset.
+Column Removal: Irrelevant columns that were not required for the analysis, such as location_lat_long, number_of_basements, and number_of_podiums, etc were dropped to simplify the dataset.
 
 Missing Value Imputation:
 
